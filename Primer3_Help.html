@@ -1,0 +1,248 @@
+<html>
+<head>
+<BASE HREF="http://www2.eur.nl.wstub.archive.org/fgg/kgen/primer/Primer3_Help.html">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title></title>
+</head>
+<body bgcolor="#ffcc66">
+      <h1>Primer3 Input Help</h1>
+
+
+<dl>
+
+<dt><a name="SEQUENCE"><strong>Source Sequence</strong></a>
+<dd>
+The sequence from which to select primers.
+
+<dt><a name="OVERLAP_SIZE_RANGE"><strong>Overlap Size Range</strong></a>
+<dd>
+The minimum and maximum sizes of overlap between subsequent PCR products.
+
+<dt><a name="TARGET"><strong>Targets</strong></a>
+<dd>If a Target is specified then a legal primer pair must
+flank this region.  A Target might be a simple sequence
+repeat site (for example a CA repeat) or a single-base-pair
+polymorphism.  The value should be a space-separated list of
+
+<pre>
+<tt><i>start</i></tt>,<tt><i>length</i></tt>
+
+</pre>
+
+pairs where <tt><i>start</i></tt> is the index of the first base of a
+Target, and <tt><i>length</i></tt> is its length.
+
+
+<pre>
+<tt><i>start</i></tt>,<tt><i>length</i></tt>
+
+</pre>
+
+pairs where <tt><i>start</i></tt> is the index of the first base of
+the excluded region, and <tt><i>length</i></tt> is its length.  This tag is
+useful for tasks such as excluding regions of low sequence
+quality or for excluding regions containing repetitive elements
+such as ALUs or LINEs.
+
+
+<dt><a name="PRIMER_PRODUCT_SIZE_RANGE"><strong>Product Size Range</strong></a>
+<dd>Minimum and maximum product size. 
+
+<dt><a name="FLANKING_SIZE"><strong>Flanking Size</strong></a>
+
+<dd>Minimum length (in bases) of the sequence flanking the exon. Primer3 
+will add this length to each side of the exon, and then designs 
+primers around this sequence. This allows eg mutation analysis of the intron/exon 
+boundaries.
+
+<dt><a name="PRIMER_SIZE"><strong>Primer Size</strong></a>
+<dd>Minimum, Optimum, and Maximum lengths (in bases) of a primer oligo.
+Primer3 will not pick primers shorter than Min or longer than
+Max, and with default arguments will attempt to pick primers
+close with size close to Opt.  Min cannot be smaller than 1.
+Max cannot be larger than 36.
+(This limit is governed by maximum oligo size for which
+melting-temperature calculations are valid.)
+Min cannot be greater than Max.
+
+<dt><a name="PRIMER_TM"><strong>Primer T<sub>m</sub></strong></a>
+<dd>Minimum, Optimum, and Maximum melting temperatures (Celsius)
+for a primer oligo. Primer3 will not pick oligos with temperatures
+smaller than Min or larger than Max, and with default conditions
+will try to pick primers with melting temperatures close to Opt.
+<p>
+Primer3 uses the oligo melting temperature formula given in
+Rychlik, Spencer and Rhoads, Nucleic Acids Research, vol 18, num
+12, pp 6409-6412 and Breslauer, Frank, Bloeker and Marky,
+Proc. Natl. Acad. Sci. USA, vol 83, pp 3746-3750.  Please refer
+to the former paper for background discussion.
+
+
+<dt><a name="PRIMER_MAX_DIFF_TM"><strong>Maximum T<sub>m</sub> Difference</strong></a>
+
+<dd>Maximum acceptable (unsigned) difference between the melting
+temperatures of the left and right primers.
+
+<dt><a name="PRIMER_SELF_ANY"><strong>Max Complementarity</strong></a>
+<dd>The maximum allowable local alignment score when testing a single
+primer for (local) self-complementarity and the maximum allowable
+local alignment score when testing for complementarity between
+left and right primers.  Local self-complementarity is taken to
+predict the tendency of primers to anneal to each other without
+necessarily causing self-priming in the PCR.  The scoring system
+gives 1.00 for complementary bases, -0.25 for a match of any base
+(or N) with an N, -1.00 for a mismatch, and -2.00 for a gap.
+Only single-base-pair gaps are allowed.  For example, the
+alignment
+
+<pre>
+5' ATCGNA 3'
+   || | |
+3' TA-CGT 5'
+</pre>
+
+is allowed (and yields a score of 1.75), but the alignment
+
+<pre>
+5' ATCCGNA 3'
+   ||  | |
+3' TA--CGT 5'
+</pre>
+
+is not considered.  Scores are non-negative, and a score of 0.00
+indicates that there is no reasonable local alignment between two
+oligos.
+
+
+<dt><a name="PRIMER_SELF_END"><strong>Max 3' Complementarity</strong></a>
+<dd>The maximum allowable 3'-anchored global alignment score when
+testing a single primer for self-complementarity, and the maximum
+allowable 3'-anchored global alignment score when testing for
+complementarity between left and right primers.  The 3'-anchored
+global alignment score is taken to predict the likelihood of
+PCR-priming primer-dimers, for example
+
+<pre>
+5' ATGCCCTAGCTTCCGGATG 3'
+             ||| |||||
+          3' AAGTCCTACATTTAGCCTAGT 5'
+</pre>
+
+or
+
+<pre>
+5` AGGCTATGGGCCTCGCGA 3'
+               ||||||
+            3' AGCGCTCCGGGTATCGGA 5'
+</pre>
+
+The scoring system is as for the Max Complementarity
+argument.  In the examples above the scores are 7.00 and 6.00
+respectively.  Scores are non-negative, and a score of 0.00
+indicates that there is no reasonable 3'-anchored global
+alignment between two oligos.  In order to estimate 3'-anchored
+global alignments for candidate primers and primer pairs, Primer
+assumes that the sequence from which to choose primers is
+presented 5'->3'.  It is nonsensical to provide a larger value
+for this parameter than for the Maximum (local) Complementarity
+parameter because the score of a local alignment will always be at
+least as great as the score of a global alignment.
+
+
+<dt><a name="PRIMER_MAX_POLY_X"><strong>Max Poly-X</strong></a>
+<dd>The maximum allowable length of a mononucleotide repeat,
+for example AAAAAA.
+
+<dt><a name="PRIMER_GC_PERCENT"><strong>Primer GC%</strong></a>
+<dd>Minimum, Optimum, and Maximum percentage of Gs and Cs in any primer.
+
+
+<dt><a name="PRIMER_GC_CLAMP"><strong>CG Clamp</strong></a>
+
+<dd>Require the specified number of consecutive Gs and Cs at the 3'
+end of both the left and right primer.
+
+<!-- 
+<dt><a name="PRIMER_LIBERAL_BASE"><strong>Liberal Base</strong></a>
+<dd>This parameter provides a quick-and-dirty way to get Primer3 to
+accept IUB / IUPAC codes for ambiguous bases (i.e. by changing
+all unrecognized bases to N).  If you wish to include an
+ambiguous
+base in an oligo, you must set
+<a href=#PRIMER_NUM_NS_ACCEPTED>Max Ns Accepted</a> to a
+non-0 value.
+
+Perhaps '-' and '* ' should be squeezed out rather than changed
+to 'N', but currently they simply get converted to N's.  The authors
+invite user comments.
+
+ -->
+
+
+</body>
+
+<SCRIPT language="Javascript">
+<!--
+
+// FILE ARCHIVED ON 20080305195118 AND RETRIEVED FROM THE
+// INTERNET ARCHIVE ON 20100603201954.
+// JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+// ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+// SECTION 108(a)(3)).
+
+   var sWayBackCGI = "http://web.archive.org/web/20080305195118/";
+
+   function xResolveUrl(url) {
+      var image = new Image();
+      image.src = url;
+      return image.src;
+   }
+   function xLateUrl(aCollection, sProp) {
+      var i = 0;
+      for(i = 0; i < aCollection.length; i++) {
+         var url = aCollection[i][sProp];         if (typeof(url) == "string") { 
+          if (url.indexOf("mailto:") == -1 &&
+             url.indexOf("javascript:") == -1
+             && url.length > 0) {
+            if(url.indexOf("http") != 0) {
+                url = xResolveUrl(url);
+            }
+            url = url.replace('.wstub.archive.org','');
+            aCollection[i][sProp] = sWayBackCGI + url;
+         }
+         }
+      }
+   }
+
+   xLateUrl(document.getElementsByTagName("IMG"),"src");
+   xLateUrl(document.getElementsByTagName("A"),"href");
+   xLateUrl(document.getElementsByTagName("AREA"),"href");
+   xLateUrl(document.getElementsByTagName("OBJECT"),"codebase");
+   xLateUrl(document.getElementsByTagName("OBJECT"),"data");
+   xLateUrl(document.getElementsByTagName("APPLET"),"codebase");
+   xLateUrl(document.getElementsByTagName("APPLET"),"archive");
+   xLateUrl(document.getElementsByTagName("EMBED"),"src");
+   xLateUrl(document.getElementsByTagName("BODY"),"background");
+   xLateUrl(document.getElementsByTagName("TD"),"background");
+   xLateUrl(document.getElementsByTagName("INPUT"),"src");
+   var forms = document.getElementsByTagName("FORM");
+   if (forms) {
+       var j = 0;
+       for (j = 0; j < forms.length; j++) {
+              f = forms[j];
+              if (typeof(f.action)  == "string") {
+                 if(typeof(f.method)  == "string") {
+                     if(typeof(f.method) != "post") {
+                        f.action = sWayBackCGI + f.action;
+                     }
+                  }
+              }
+        }
+    }
+
+
+//-->
+</SCRIPT>
+
+</html>

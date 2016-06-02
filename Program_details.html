@@ -1,0 +1,421 @@
+<html>
+<head>
+<BASE HREF="http://www2.eur.nl.wstub.archive.org/fgg/kgen/primer/Program_details.html">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<title>Copyright notice and Disclaimer</title> 
+<style TYPE="text/css">
+<!--
+body { background-color:#ffff99;
+       background-image: url(pictures/background1.gif);
+       background-repeat: repeat-y;
+       margin-left: 120px;
+       width: 80%;
+       text-align: justify;}
+-->
+</style>
+
+</head>
+
+<body>
+
+<div class=Section1>
+
+<h2>The PCR Suite – details on the program</h2>
+
+
+<p>PCR Suite consists of 4 interfaces to the Whitehead’s
+Primer3 program, available at www.eur.nl/fgg/kgen/primer. The PCR Suite software
+contains a main program that determines which of the 4 interfaces will be
+used, and a number of subroutines to format the input for Primer3.</p>
+
+
+
+<p>Warning: the program does NOT do any masking of the
+sequence, and it does not contain a mispriming library for checking the
+primers. Sequences should be repeat masked before uploading via the website.</p>
+
+
+<p>Primer3 has many parameters that may be changed by the user.
+For simplicity, not all of these parameters can be changed in the PCR Suite.
+The parameters available on the input forms are:</p>
+
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>
+  <td span=2>Default Values</center>
+<tr> 
+  <td>Name
+  <td>PCR Suite 
+  <td>Primer3
+
+<tr> 
+ <td>PRIMER_OPT_SIZE
+ <td>20
+ <td>20
+<tr>
+  <td>PRIMER_MIN_SIZE
+  <td>18
+  <td>18
+<tr>
+  <td>PRIMER_MAX_SIZE
+  <td>23
+  <td>27
+<tr>
+  <td>PRIMER_OPT_TM
+  <td>60
+  <td>60
+<tr>
+  <td>PRIMER_MIN_TM
+  <td>55
+  <td>57
+<tr>
+  <td>PRIMER_MAX_TM
+  <td>65
+  <td>63
+<tr>
+  <td>PRIMER_MAX_DIFF_TM
+  <td>5
+  <td>100
+<tr>
+  <td>PRIMER_SELF_ANY
+  <td>6.00
+  <td>8.00
+<tr>
+  <td>PRIMER_SELF_END
+  <td>3.00
+  <td>3.00
+<tr>
+  <td>PRIMER_MAX_POLY_X
+  <td>4
+  <td>5
+<tr>
+  <td>PRIMER_MAX_DIFF_TM
+  <td>5
+  <td>100
+<tr>
+  <td>PRIMER_MIN_GC
+  <td>30
+  <td>20
+<tr>
+  <td>PRIMER_MAX_GC
+  <td>70
+  <td>80
+<tr>
+  <td>PRIMER_GC_CLAMP
+  <td>0
+  <td>0
+
+  </table>
+
+
+<p>The PCR Suite default parameters are more stringent than the
+default Primer3 parameters, because we found in the lab that these values
+result in better primer sets (i.e. sets that usually give a good PCR product).</p>
+
+<p><o:p>&nbsp;</o:p></p>
+
+<p>A number of parameters cannot be changed by the user in the
+PCR Suite:</p>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr> 
+  <td>Name
+  <td>PCR Suite 
+  <td>Primer3
+<tr>
+  <td>PRIMER_MAX_END_STABILITY
+  <td>9
+  <td>9
+<tr> 
+  <td>PRIMER_NUM_RETURN
+  <td>1
+  <td>5
+</table>
+
+
+<br>
+<p>Some parameters are changed depending on the interface used:</p>
+
+<h3>SNP_Primers: </h3>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>PRIMER_PRODUCT_SIZE_RANGE
+  <td>250-400
+
+<tr> 
+  <td>PRIMER_SEQUENCE_ID
+  <td>as listed in GenBank file
+
+<tr>
+  <td>TARGET
+  <td>see below
+
+<tr> 
+  <td>EXCLUDED_REGION
+  <td>all SNP positions
+
+<tr> 
+  <td>SEQUENCE
+  <td>see below
+
+</table>
+
+
+
+<h3>Genomic_Primers: </h3>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>PRIMER_PRODUCT_SIZE_RANGE
+  <td>250-400
+
+<tr> 
+  <td>PRIMER_SEQUENCE_ID
+  <td>exon nr
+
+<tr>
+  <td>TARGET
+  <td>exon plus flanking
+
+<tr> 
+  <td>SEQUENCE
+  <td>exon plus 200 bp on each side
+
+</table>
+
+
+
+<h3>Overlapping_Primersets:</h3>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>PRIMER_PRODUCT_SIZE_RANGE
+  <td>250-400
+
+<tr> 
+  <td>PRIMER_SEQUENCE_ID
+  <td>PCR product nr
+
+<tr>
+  <td>TARGET
+  <td>user input
+
+<tr> 
+  <td>SEQUENCE
+  <td>user input
+
+</table>
+
+<h3>SNP Primers</h3>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>PRIMER_PRODUCT_SIZE_RANGE
+  <td>250-800
+
+<tr> 
+  <td>SEQUENCE
+  <td>from GenBank record
+
+</table>
+
+<p>And depending on input:</p>
+
+	<table cellpadding=4 border=0 bgcolor=#FFCC66 width="50%">
+<tr>
+  <td>PRIMER_PRODUCT_OPT_SIZE
+  <td>size of input sequence
+
+<tr> 
+  <td>PRIMER_PAIR_WT_PRODUCT_SIZE_GT
+  <td>0.05
+
+<tr> 
+  <td>PRIMER_PAIR_WT_PRODUCT_SIZE_LT
+  <td>0.05
+
+</table>
+
+<br>
+<H3>A description of each
+interface follows below.</H3>
+
+
+<p><b style='mso-bidi-font-weight:normal'>SNP Primers<o:p></o:p></b></p>
+
+<p>Input: GenBank file containing region of interest.</p>
+
+<p style='text-align:justify'>The program starts by selecting
+all the variations in the input GenBank file. It then removes all SNPs that are
+marked ‘ambiguous’, because the real positions of these SNPs are unclear. The <span
+class=GramE>positions of the SNPs in the sequence is</span> put in the
+EXCLUDED_REGION parameter, to avoid primers in these regions.<br>
+
+The Primer3 program is run for
+each SNP. The TARGET (the region between the primers) is the SNP. The SEQUENCE
+is the SNP plus the maximum product size on each side, selected from the
+GenBank sequence.<br>
+
+The Primer3 output is formatted for the HTML page: The
+primers and SNP are shown in color in their target sequence.</p>
+
+<br>
+<p><b style='mso-bidi-font-weight:normal'>Genomic Primers<o:p></o:p></b></p>
+
+<p>Input: GenBank file and gene name.</p>
+
+<p>After checking if the gene name appears in the GenBank file,
+the program stores the selected product size range and flanking size. The
+flanking size is a number of nucleotides (max 100) added to each side of the
+exon, to allow screening intron/exon boundaries or nearby intronic regions. The
+sequence of each exon is selected from the GenBank file, together with 200 <span
+class=GramE>nt</span> flanking sequence. If the gene is on the reverse strand,
+the exons are reversed, so that the output presents the exons in their 5’ to 3’
+order. <br>
+Primer 3 is run for each exon separately. The TARGET is the
+exon plus the flanking size, the SEQUENCE is the exon plus 200 <span
+class=GramE>nt</span> sequence on each side, selected from the GenBank
+sequence.<br>
+The Primer3 output is formatted for the HTML page: Primers
+are shown in color and the exons in uppercase. The cDNA (all exons
+concatenated) is shown at the bottom of the page.</p>
+
+<br>
+
+<p><b style='mso-bidi-font-weight:normal'>Overlapping Primers<o:p></o:p></b></p>
+
+<p>Input: a sequence and a target region.</p>
+
+<p>The sequence is first ‘cleaned’: FASTA headers, numbers and
+spaces are removed. The program then takes the sequence and the selected target
+region, and the product size range. It then sets TARGET to the start of the
+specified target and the size of the smallest acceptable product size (the
+first number of the PRIMER_PRODUCT_SIZE_RANGE as set on the form). So, if the
+target is “50, 1500” and the size range is “250-400”, TARGET becomes “50, 250”.
+Primer3 is run with these settings. If a primer set is found, the sequence is
+trimmed at the 5’ end: everything before the position of the reverse primer
+minus the maximum allowed overlap is removed. The TARGET now becomes the length
+of the overlap (overlap_hi minus overlap_lo) and the size of the smallest
+acceptable product size.</p>
+
+<p>Example:</p>
+
+<p>Sequence is 2000 <span class=GramE>nt</span>, target is “10,
+1500”, overlap range is “20-50” and product size range is “250-400”.Primer3 is run with TARGET 50, 250 and returns a product
+that runs from 30-400 (note that the size of the product is within the product
+size range).The sequence is now trimmed: 400-50= 350 <span class=GramE>nt</span>
+are removed from the 5’ end. Primer3 is run again, now with TARGET (50-20=<span
+class=GramE>)30</span>, 250.</p>
+
+<p>The program keeps track of the position of each PCR product
+in the original sequence, and if the reverse primer is past the original
+target, it exits the loop.<br>
+If Primer3 does not return a primer set for any of the
+TARGETs, the input sequence is 5’ trimmed with a length of product_size_lo (250
+in our example). This results in a piece of sequence that is not ‘covered’ by
+primer sets, and the output is formatted so that these regions are easily
+visible. It is then possible to rerun Primer3 for those parts of the sequence,
+or to rerun the whole sequence with less stringent parameters.<br>
+The output is formatted to show each PCR product with the
+primers in uppercase, and at the bottom of the HTML page the whole sequence is
+shown, with the selected target in uppercase and the covered regions in blue.</p>
+
+<br>
+<p><span class=GramE><b style='mso-bidi-font-weight:normal'>cDNA</b></span><b
+style='mso-bidi-font-weight:normal'> primers<o:p></o:p></b></p>
+
+<p>Input: a list of cDNA sequences in GenBank format.</p>
+
+<p>The program designs primers around the open reading frames
+of each cDNA in the list, unless the ORF is larger than the specified maximum
+product size. <br>
+First, the name of the gene, the sequence and the position
+of the ORF are extracted from each GenBank record. If the size of the ORF
+exceeds the maximum product size, a warning is issued and the program continues
+with the next cDNA. Warnings are also generated when the record does not
+contain an ORF. <br>
+If the size of the ORF is identical to the size of the
+sequence, the program sets the PRIMER_PRODUCT_OPT_SIZE parameter to the
+sequence size. The penalty parameters RIMER_PAIR_WT_PRODUCT_SIZE_GT and _LT are
+set to 0.05. This ensures that Primer3 creates the largest possible product
+within the sequence. If the ORF is within the sequence, these parameters are
+not set, and Primer3 is run with the size range parameter only.<br>
+The Primer3 output is formatted for the HTML page: Primers
+and ORF are shown in color and uppercase in the input sequence.<o:p></o:p></p>
+
+<p style='text-align:justify'><o:p>&nbsp;</o:p></p>
+
+<p><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+
+<SCRIPT language="Javascript">
+<!--
+
+// FILE ARCHIVED ON 20080409082423 AND RETRIEVED FROM THE
+// INTERNET ARCHIVE ON 20100603202054.
+// JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+// ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+// SECTION 108(a)(3)).
+
+   var sWayBackCGI = "http://web.archive.org/web/20080409082423/";
+
+   function xResolveUrl(url) {
+      var image = new Image();
+      image.src = url;
+      return image.src;
+   }
+   function xLateUrl(aCollection, sProp) {
+      var i = 0;
+      for(i = 0; i < aCollection.length; i++) {
+         var url = aCollection[i][sProp];         if (typeof(url) == "string") { 
+          if (url.indexOf("mailto:") == -1 &&
+             url.indexOf("javascript:") == -1
+             && url.length > 0) {
+            if(url.indexOf("http") != 0) {
+                url = xResolveUrl(url);
+            }
+            url = url.replace('.wstub.archive.org','');
+            aCollection[i][sProp] = sWayBackCGI + url;
+         }
+         }
+      }
+   }
+
+   xLateUrl(document.getElementsByTagName("IMG"),"src");
+   xLateUrl(document.getElementsByTagName("A"),"href");
+   xLateUrl(document.getElementsByTagName("AREA"),"href");
+   xLateUrl(document.getElementsByTagName("OBJECT"),"codebase");
+   xLateUrl(document.getElementsByTagName("OBJECT"),"data");
+   xLateUrl(document.getElementsByTagName("APPLET"),"codebase");
+   xLateUrl(document.getElementsByTagName("APPLET"),"archive");
+   xLateUrl(document.getElementsByTagName("EMBED"),"src");
+   xLateUrl(document.getElementsByTagName("BODY"),"background");
+   xLateUrl(document.getElementsByTagName("TD"),"background");
+   xLateUrl(document.getElementsByTagName("INPUT"),"src");
+   var forms = document.getElementsByTagName("FORM");
+   if (forms) {
+       var j = 0;
+       for (j = 0; j < forms.length; j++) {
+              f = forms[j];
+              if (typeof(f.action)  == "string") {
+                 if(typeof(f.method)  == "string") {
+                     if(typeof(f.method) != "post") {
+                        f.action = sWayBackCGI + f.action;
+                     }
+                  }
+              }
+        }
+    }
+
+
+//-->
+</SCRIPT>
+
+</html>
