@@ -14,7 +14,7 @@
 #      This product includes software developed by the Erasmus Medical Centre.
 #   4. The name of the Erasmus MC may not be used to endorse or promote products derived from this software without specific prior written permission. 
 #
-# The code of the script is available at http://www.eur.nl/fgg/primer3/source.txt.
+# The code of the script is available at http://pcrsuite.soe.ucsc.edu/source.txt
 #
 # THE PCR SUITE SCRIPT IS PROVIDED BY THE ERASMUS MC ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE ERASMUS MC BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Copyright Notice and Disclaimer for Primer3
@@ -68,7 +68,9 @@ if ($q ->param('Pick Primers')){
 
 # get the user id and add it to a list
 my$userAddr=$ENV{REMOTE_ADDR};
-my$file="/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/stats.txt";
+#my$file="/tmp/stats.txt";
+my$file="output/stats.txt";
+#my$file="/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/stats.txt";
 
 open (STATS, ">>$file");
 print STATS scalar localtime;
@@ -229,7 +231,7 @@ sub create_html{
   print $q->hr;
   print $q->p("If you want to design other primers use the");
   print $q->a({-href => 
-    "//www-genome.wi.mit.edu/cgi-bin/primer/primer3_www.cgi"}, 
+    "https://primer3.ut.ee"}, 
     "Primer3 input form");
   print $q->p("Note: these primers may contain repeats.");
   print $q->p("wait while the program is running...");
@@ -535,7 +537,9 @@ sub get_filedata{
 # subroutine for reading in files from form input
 
   my ($q) = @_;
-  use constant UPLOAD_DIR => "/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/output/";
+
+  use constant UPLOAD_DIR => "/var/www/cgi-bin-pcrsuite/output";
+#  use constant UPLOAD_DIR => "/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/output/";
   use constant BUFFER_SIZE =>16_384;
   use constant MAX_FILE_SIZE =>   5 * 1_048_576;
   use constant MAX_DIR_SIZE =>  10 * 1_048_576;
@@ -695,8 +699,9 @@ sub run_primer3{
 
   my($params_general) = shift @_;
   my($parameters_specific) = shift @_;
-  my$PRIMER_BIN = '/srv/mblab/bin/pcr_pipeline/bin/primer3_core';
-#  my$PRIMER_BIN = '/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/bin/primer3_core';
+
+  my$PRIMER_BIN = '/var/www/cgi-bin-pcrsuite/primer3_core';
+#  my$PRIMER_BIN = '/srv/mblab/bin/pcr_pipeline/bin/primer3_core';
   my $cline;
   my $cmd = "$PRIMER_BIN";
   my $primer3_pid;
