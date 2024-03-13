@@ -14,7 +14,7 @@
 #      This product includes software developed by the Erasmus Medical Centre.
 #   4. The name of the Erasmus MC may not be used to endorse or promote products derived from this software without specific prior written permission. 
 #
-# The code of the script is available at http://pcrsuite.soe.ucsc.edu/source.txt
+# Code available at https://github.com/Jeltje/pcrsuite
 #
 # THE PCR SUITE SCRIPT IS PROVIDED BY THE ERASMUS MC ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE ERASMUS MC BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Copyright Notice and Disclaimer for Primer3
@@ -34,8 +34,8 @@
 #
 
 use strict;
+use CGI;
 use CGI::Carp qw(fatalsToBrowser);
-use CGI::Pretty qw(-unique_headers);
 
 $| = 1;
 
@@ -64,18 +64,6 @@ if ($q ->param('Pick Primers')){
 } else {
   error ($q, "Did not see the 'Pick Primers' query parameter")
 }
-
-
-# get the user id and add it to a list
-my$userAddr=$ENV{REMOTE_ADDR};
-#my$file="/tmp/stats.txt";
-my$file="output/stats.txt";
-#my$file="/usr/local/apache/share/eur/htdocs/fgg/kgen/primer/stats.txt";
-
-open (STATS, ">>$file");
-print STATS scalar localtime;
-print STATS "\t$userAddr\t$ident\n";
-close STATS;
 
 # extract specific info and run program for each instance of INPUT
 
